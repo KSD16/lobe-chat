@@ -78,8 +78,8 @@ const ListView = memo(() => {
   const [lastSelectedIndex, setLastSelectedIndex] = useState<number | null>(null);
   const isDragActive = useDragActive();
   const [isDropZoneActive, setIsDropZoneActive] = useState(false);
-  const scrollTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const autoScrollIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { currentFolderSlug } = useFolderPath();
@@ -284,7 +284,6 @@ const ListView = memo(() => {
         </Flexbox>
       </Flexbox>
       <div
-        ref={containerRef}
         className={cx(styles.dropZone, isDropZoneActive && styles.dropZoneActive)}
         data-drop-target-id={currentFolderId || undefined}
         data-is-folder="true"
@@ -294,6 +293,7 @@ const ListView = memo(() => {
           handleDragMove(e);
         }}
         onDrop={handleDropZoneDrop}
+        ref={containerRef}
         style={{ flex: 1, overflow: 'hidden', position: 'relative' }}
       >
         <Virtuoso
