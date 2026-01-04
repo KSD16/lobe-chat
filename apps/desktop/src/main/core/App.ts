@@ -469,7 +469,7 @@ export class App {
       const directPath = this.resolveExportFilePath(pathname);
       if (directPath) return directPath;
 
-      // Next.js RSC payloads are emitted under variant folders (e.g. /en-US__0__light/__next._tree.txt),
+      // Next.js RSC payloads are emitted under variant folders (e.g. /en-US__0/__next._tree.txt),
       // but the runtime may request them without the variant prefix. For missing .txt requests,
       // retry resolution with variant injection.
       if (extension === '.txt' && normalizedPathname.includes('__next.')) {
