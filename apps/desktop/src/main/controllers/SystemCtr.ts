@@ -248,9 +248,8 @@ export default class SystemController extends ControllerModule {
     return nativeTheme.themeSource;
   }
 
-  @IpcMethod()
-  async setSystemThemeMode(themeMode: ThemeMode) {
-    nativeTheme.themeSource = themeMode === 'auto' ? 'system' : themeMode;
+  private async setSystemThemeMode(themeMode: ThemeMode) {
+    nativeTheme.themeSource = themeMode;
   }
 
   /**

@@ -24,5 +24,5 @@ export interface UserPathData {
   videos?: string; // User's home directory
 }
 
-export type ThemeMode = 'auto' | 'dark' | 'light';
+export type ThemeMode = 'system' | 'dark' | 'light';
 export type ThemeAppearance = 'dark' | 'light' | string;

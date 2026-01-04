@@ -1,7 +1,6 @@
 import {
   DEFAULT_VARIANTS,
   LOBE_LOCALE_COOKIE,
-  LOBE_THEME_APPEARANCE,
   Locales,
   RouteVariants,
 } from '@lobechat/desktop-bridge';
@@ -499,7 +498,6 @@ export class App {
 
   private readonly defaultRouteVariant = RouteVariants.serializeVariants(DEFAULT_VARIANTS);
   private readonly localeCookieName = LOBE_LOCALE_COOKIE;
-  private readonly themeCookieName = LOBE_THEME_APPEARANCE;
 
   /**
    * Build variant string from Electron session cookies to match Next export structure.
@@ -511,13 +509,11 @@ export class App {
         url: `${this.rendererLoadedUrl}/`,
       });
       const locale = cookies.find((c) => c.name === this.localeCookieName)?.value;
-      const themeCookie = cookies.find((c) => c.name === this.themeCookieName)?.value;
 
       const serialized = RouteVariants.serializeVariants(
         RouteVariants.createVariants({
           isMobile: false,
           locale: locale as Locales | undefined,
-          theme: themeCookie === 'dark' || themeCookie === 'light' ? themeCookie : undefined,
         }),
       );
 
